@@ -28,6 +28,27 @@ class _FirstState extends State<First> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller1.dispose();
+    _controller2.dispose();
+  }
+
+  void startBothPlayers() async {
+    await _controller1.play();
+    await _controller2.play();
+  }
+
+  void stopBothPlayers() async {
+    await _controller1.pause();
+    await _controller2.pause();
+  }
+
+  void togglePlaying() {
+    _controller1.value.isPlaying || _controller2.value.isPlaying ? stopBothPlayers() : startBothPlayers();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -60,24 +81,4 @@ class _FirstState extends State<First> {
     );
   }
 
-  void startBothPlayers() async {
-    await _controller1.play();
-    await _controller2.play();
-  }
-
-  void stopBothPlayers() async {
-    await _controller1.pause();
-    await _controller2.pause();
-  }
-
-  void togglePlaying() {
-    _controller1.value.isPlaying || _controller2.value.isPlaying ? stopBothPlayers() : startBothPlayers();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller1.dispose();
-    _controller2.dispose();
-  }
 }
