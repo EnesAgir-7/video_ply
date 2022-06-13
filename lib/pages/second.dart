@@ -23,8 +23,7 @@ class _SecondState extends State<Second> {
     _controller2 = VideoPlayerController.asset("../../videos/drums.mp4")
       ..initialize().then((_) {
         setState(() {
-
-    _controller2.setLooping(true);
+          _controller2.setLooping(true);
         });
       });
   }
